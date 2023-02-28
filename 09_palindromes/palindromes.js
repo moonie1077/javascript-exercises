@@ -1,4 +1,4 @@
-const palindromes = function () {
+const palindromes = function (text) {
 
 };
 document.getElementById("demo").innerHTML = palindromes(3);
