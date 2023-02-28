@@ -1,6 +1,6 @@
 const palindromes = function () {
 
 };
-
+document.getElementById("demo").innerHTML = palindromes(3);
 // Do not edit below this line
-module.exports = palindromes;
+//module.exports = palindromes;
