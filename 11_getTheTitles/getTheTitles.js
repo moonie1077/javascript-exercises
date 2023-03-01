@@ -1,6 +1,20 @@
-const getTheTitles = function() {
+const getTheTitles = function(arrayBooks) {
+let titles = [];
+arrayBooks.forEach(book => titles.push(book.title))
 
+return titles;
 };
-document.getElementById("demo").innerHTML = getTheTitles("6");
+
+//const books = [
+//  {
+//    title: 'Book',
+//    author: 'Name'
+//  },
+//  {
+//    title: 'Book2',
+//    author: 'Name2'
+//  }
+//]
+//document.getElementById("demo").innerHTML = getTheTitles(books);
 // Do not edit below this line
 module.exports = getTheTitles;
