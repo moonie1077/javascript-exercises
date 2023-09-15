@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jave Ex 13</title>
+    <script defer src="script.js"> </script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+
+
+    <h2>JavaScript Library</h2>
+<p>Implement a virtual library</p>
+<dialog id="addBookDialog">
+  <form id="addBookForm" autocomplete="off">
+    <p>
+        <label for="title">Title: </label> <input type="text" id="title" name="title"><br>
+        <label for="author">Author: </label> <input type="text" id="author" name="author"><br>
+        <label for="pages">Page Count: </label> <input type="text" id="pages" name="pages"><br>
+        <label for="beenRead">Has it been read?</label> <input type="checkbox" id="beenRead" name="beenRead" value="1">
+    </p>
+    <div>
+      <button value="cancel" formmethod="dialog">Cancel</button>
+      <button id="confirmBtn" value="default">Confirm</button>
+    </div>
+  </form>
+</dialog>
+<p>
+  <button id="showAddBookDialog">Add a new book</button>
+</p>
+
+
+    <div class="bookCards"></div>
+
+
+</body>
+</html>

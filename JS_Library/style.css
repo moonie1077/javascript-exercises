@@ -1,0 +1,17 @@
+.bookCards{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(175px,1fr));
+    grid-template-rows: 1fr;
+    justify-content: start;
+}
+
+.itemBook {
+    display: grid;
+    width: 175px;
+    height: 175px;
+    color: white;
+    border-radius: 10px;
+    background: black;
+    padding: 10px;
+}
