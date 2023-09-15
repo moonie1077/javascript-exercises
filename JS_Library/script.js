@@ -48,11 +48,13 @@ function displayLibrary (){
         itemBook.appendChild(read);
 
         const markRead = document.createElement('button')
+            markRead.setAttribute('class', 'cardButton');
             markRead.innerText="Change Status";
             markRead.onclick = function() {toggleRead(myLibrary[index])};
         itemBook.appendChild(markRead);
 
         const removeBook = document.createElement('button')
+            removeBook.setAttribute('class', 'cardButton');
             removeBook.innerText="Remove Book";
             removeBook.onclick = function() {delBook(index)};
         itemBook.appendChild(removeBook);
