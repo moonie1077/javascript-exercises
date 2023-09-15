@@ -101,7 +101,7 @@ const myLibrary = [];
 
 addBookToLibrary("It", "Stephen King", 793, 1);
 addBookToLibrary("Wielding A Red Sword", "Piers Anthony", 392, 1);
-addBookToLibrary("The Complete Works of H.P. Lovecraft", "H.P. Lovecraft", 1098, 0);
+addBookToLibrary("The Complete Works of H.P. Lovecraft", "H.P. Lovecraft", 1098, 1);
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, 1);
 
 displayLibrary();
