@@ -11,7 +11,8 @@ function gameBoard() {
       return true;
     }
   };
-  const checkWin = () => {
+  const checkWin = (playerName) => {
+    screen.updateStatus("");
     const boardReset = () => {
       board.length = 0;
       for (let i = 0; i < 9; i++) {
@@ -31,13 +32,15 @@ function gameBoard() {
       (table[6] === table[7] && table[7] === table[8] && table[6] !== 0) ||
       (table[2] === table[4] && table[4] === table[6] && table[2] !== 0)
     ) {
-      console.log(`${game.getActivePlayer().name} has won!`);
+      screen.updateStatus(
+        `${playerName} has won! New game starting with winner first...`,
+      );
       console.log("New game starting with winner going first...");
       boardReset();
       return true;
     }
     if (table.indexOf(0) === -1) {
-      console.log(
+      screen.updateStatus(
         "Game is a tie, new game starting with next player going first...",
       );
       boardReset();
@@ -94,17 +97,69 @@ function gameController(
     );
     if (board.checkLocation(location)) {
       board.placeToken(location, getActivePlayer().token);
-      const winnerCheck = board.checkWin();
+      const winnerCheck = board.checkWin(getActivePlayer().name);
       if (!winnerCheck) {
         switchPlayerTurn();
       }
       printNewRound();
     } else {
-      console.log("Spot already taken, try again");
+      screen.updateStatus("Spot already taken, try again");
     }
   };
   printNewRound();
-  return { playRound, getActivePlayer };
+  return { playRound, getActivePlayer, getBoard: board.getBoard };
+}
+function screenController() {
+  const game = gameController();
+  const playerTurnDiv = document.querySelector(".turn");
+  const statusDiv = document.querySelector(".status");
+  const boardDiv = document.querySelector(".board");
+
+  const updateScreen = () => {
+    // clear the board
+    boardDiv.textContent = "";
+
+    // get the newest version of the board and player turn
+    const board = game.getBoard();
+    const activePlayer = game.getActivePlayer();
+
+    // Display player's turn
+    playerTurnDiv.textContent = `${activePlayer.name}'s turn...`;
+
+    // Render board squares
+    board.forEach((cell, index) => {
+      // Anything clickable should be a button!!
+      const cellButton = document.createElement("button");
+      cellButton.classList.add("cell");
+      // Create a data attribute to identify the location to support playround function
+      cellButton.dataset.location = index;
+
+      if (cell.getValue() != 0) {
+        //do not display non-player values
+        cellButton.textContent = cell.getValue();
+      }
+      boardDiv.appendChild(cellButton);
+    });
+  };
+  const updateStatus = (text) => {
+    statusDiv.textContent = text;
+  };
+  // Add event listener for the board
+  function clickHandlerBoard(e) {
+    const selectedLocation = e.target.dataset.location;
+    // Make sure I've clicked a column and not the gaps in between
+    if (!selectedLocation) return;
+
+    game.playRound(selectedLocation);
+    updateScreen();
+  }
+  boardDiv.addEventListener("click", clickHandlerBoard);
+
+  // Initial render
+  updateScreen();
+
+  return { updateStatus };
+  // We don't need to return anything from this module because everything is encapsulated inside this screen controller.
 }
 
-const game = gameController();
+const screen = screenController();
