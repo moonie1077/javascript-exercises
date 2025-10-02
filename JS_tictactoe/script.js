@@ -130,7 +130,7 @@ function screenController() {
     board.forEach((cell, index) => {
       // Anything clickable should be a button!!
       const cellButton = document.createElement("button");
-      cellButton.classList.add("cell");
+      ellButton.classList.add("cell");
       // Create a data attribute to identify the location to support playround function
       cellButton.dataset.location = index;
 
